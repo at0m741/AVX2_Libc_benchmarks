@@ -67,7 +67,7 @@ void benchmark_memmove(size_t size, size_t iterations) {
     uint8_t *dest_custom = (uint8_t *)aligned_alloc(32, size);
 
     if (!src || !dest_std || !dest_custom) {
-        fprintf(stderr, "Erreur d'allocation mémoire\n");
+        fprintf(stderr, "Error alloc\n");
         exit(EXIT_FAILURE);
     }
 
@@ -93,14 +93,12 @@ void benchmark_memmove(size_t size, size_t iterations) {
     time_custom = end - start;
 
     if (memcmp(dest_std, dest_custom, size) != 0) {
-        fprintf(stderr, "Erreur: Les résultats de memmove et _memmove diffèrent pour la taille %zu\n", size);
+        fprintf(stderr, "Error: different results of memmove and _memmove for a sizeof %zu\n", size);
     } else {
-        printf("Taille: %8zu bytes | memmove: %8.6f s | _memmove: %8.6f s | Gain: %.2f%%\n",
+        printf("size: %8zu bytes | memmove: %8.6f s | _memmove: %8.6f s | Gain: %.2f%%\n",
                size, time_std, time_custom,
                ((time_std - time_custom) / time_std) * 100);
     }
-
-    // Libérer la mémoire
     free(src);
     free(dest_std);
     free(dest_custom);
@@ -114,9 +112,9 @@ int main() {
 
     size_t iterations = 10000;
 
-    printf("Benchmark de memmove vs _memmove\n");
-    printf("Iterations: %zu\n\n", iterations);
-    printf("Taille (bytes) | memmove (s) | _memmove (s) | Gain\n");
+    printf("Benchmark of memmove vs _memmove\n");
+    printf("Iter: %zu\n\n", iterations);
+    printf("SIze (bytes) | memmove (s) | _memmove (s) | Gain\n");
     printf("---------------------------------------------------------\n");
 
     for (size_t i = 0; i < num_sizes; ++i) {
