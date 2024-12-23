@@ -25,13 +25,13 @@ void *_memcpy_avx(void *dest, const void *src, size_t len) {
 		_mm_prefetch((const char *)(s + 8), _MM_HINT_T0);
 		_mm_prefetch((const char *)(d + 8), _MM_HINT_T0);
 	}
-	_mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
+	    _mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
         _mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
         _mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
         _mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
         _mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
         _mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
-	_mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
+	    _mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
         _mm256_storeu_si256(d++, _mm256_loadu_si256(s++));
     }	
     for (size_t i = 0; i < remainder_blocks; ++i) {
